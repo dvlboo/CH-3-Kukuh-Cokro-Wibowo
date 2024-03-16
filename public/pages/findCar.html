@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BCR | Binar Car Rental - Challenge 2</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" 
+    integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" 
+    crossorigin="anonymous"
+  >
+
+  <!-- icon -->
+  <link rel="shortcut icon" href="../images/assets/icon-binar.png" type="image/x-icon">
+
+  <!-- style -->
+  <link rel="stylesheet" href="../css/index.css">
+  <link rel="stylesheet" href="../css/breakpoint.css">
+  <link rel="stylesheet" href="../css/findCar.css">
+</head>
+<body>
+
+  <div class="bg-darkLayer" id="bg-darkLayer"></div>
+
+  
+  <!-- Header : Navbar -->
+  <header id="home">
+    <!-- <nav class="navbar navbar-expand"> -->
+    <nav class="d-flex justify-content-between align-items-center">
+      <a href="../index.html" class="navbar-brand"><img src="../images/assets/logo-bcr.png" alt="" class="logo"></a>
+
+      <!-- hidden -->
+      <span class="bi bi-list d-lg-none hamburger-menu" id="hamburger-menu"></span>
+      
+
+      <div class="d-none flex-column d-lg-flex flex-lg-row gap-1 gap-lg-5 menu-items" id="menu-items">  
+        <!-- hidden menu => responsive -->
+        <a class="nav-link d-flex justify-content-between align-items-center d-lg-none">
+          <div class="fw-blod">BCR</div>
+          <div>
+            <span class="bi bi-x fw-blod close-x" id="close-x"></span>
+          </div>
+        </a>
+
+        <a class="nav-link" href="../index.html#our-service">Our Sevices</a>
+        <a class="nav-link" href="../index.html#why-us">Why Us</a>
+        <a class="nav-link" href="../index.html#testimonial">Testimonial</a>
+        <a class="nav-link" href="../index.html#faq">FAQ</a>
+        <button class="tombol">Register</button>
+      </div>
+    </nav>
+  </header>
+  
+  <!-- Content -->
+  <main>
+    <section class="row hero">
+      <div class="col-lg m-auto">
+        <h2 class="fw-bold mb-3 judul-hero">Sewa & Rental Mobil Terbaik di kawasan Kediri</h2>
+        <p class="fw-normal pl-0 text text-hero">Selamat datang di Binar Car Rental. Kami menyediakan mobil kualitas terbaik dengan harga terjangkau. Selalu siap melayani kebutuhanmu untuk sewa mobil selama 24 jam.</p>
+      </div>
+      
+      <aside class="col-lg img-fluid img-car">
+        <div class="justify-content-end align-items-end">
+          <img src="../images/assets/img_car.png" alt="ini gambar mobil mercedes" class="mt-xxl-2 mt-lg-5 bicar">
+        </div>
+      </aside>
+    </section>
+
+    <section class="row">
+      <div class="card card-car">
+        <div class="card-body d-flex px-auto">
+
+          <div class="col-md-3 mt-3">
+            <label for="driverType" class="form-label">Tipe Driver</label>
+            <select class="form-select" id="driverType">
+              <option selected hidden>Pilih Tipe Driver</option>
+              <option>Dengan Sopir</option>
+              <option>Tanpa Sopir (Lepas Kunci)</option>
+            </select>
+          </div>
+
+          <div class="col-md-2 mt-3">
+            <label for="pickupDate" class="form-label">Tanggal</label>
+            <input type="date" class="form-control" id="pickupDate" placeholder="Pilih Tanggal">
+          </div>
+          
+          <div class="col-md-3 mt-3">
+            <label for="pickupTime" class="form-label">Waktu Jemput/Ambil</label>
+            <select class="form-select" id="pickupTime">
+              <option selected hidden>Pilih Waktu Jemput</option>
+              <option>08.00 WIB</option>
+              <option>09.00 WIB</option>
+              <option>10.00 WIB</option>
+              <option>11.00 WIB</option>
+              <option>12.00 WIB</option>
+            </select>
+          </div>
+
+          <div class="col-md-3 mt-3">
+            <label for="passengerCount" class="form-label">Jumlah Penumpang (optional)</label>
+            <input type="number" class="form-control" id="passengerCount" placeholder="Jumlah Penumpang" min="1">
+          </div>
+
+          <div class="col-md-2 tombol-cari">
+            <button class="tombol" id="search-car">Cari Mobil</button>
+          </div>
+        </div>
+      </div>            
+    </section>
+
+    <div class="container">
+      <div class="row g-4" id="view-cars"></div>
+    </div>
+
+  </main>
+
+  <!-- footer -->
+  <footer class="row mb-4 mt-5">
+    <div class="col-lg-3">
+      <div class="d-flex flex-column gap-3 mb-4">
+        <div>Jalan Suroyo No. 161 Mayangan Kota Probolonggo 672000</div>
+        <div>binarcarrental@gmail.com</div>
+        <div>081-233-334-808</div>
+      </div>
+    </div>
+
+    <div class="col-lg-2">
+      <div class="d-flex flex-column gap-3 mb-4 fw-bold">
+        <a class="nav-foot" href="#our-service">Our Services</a>
+        <a class="nav-foot" href="#why-us">Why Us</a>
+        <a class="nav-foot" href="#testimonial">Testimonial</a>
+        <a class="nav-foot" href="#faq">FAQ</a>
+      </div>
+    </div>
+    
+    <div class="col-lg-4">
+      <div class="d-flex flex-column gap-3 mb-4">
+        <div>Connect with us</div>
+        <div class="d-flex gap-4 gap-lg-3">
+          <a href=""><img src="../images/assets/icon_facebook.png" alt=""></a>
+          <a href=""><img src="../images/assets/icon_instagram.png" alt=""></a>
+          <a href=""><img src="../images/assets/icon_twitter.png" alt=""></a>
+          <a href=""><img src="../images/assets/icon_mail.png" alt=""></a>
+          <a href=""><img src="../images/assets/icon_twitch.png" alt=""></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-3">
+      <div class="d-flex flex-column gap-3 mb-4">
+        <div>Copyright Binar 2024</div>
+        <a href="../index.html"><img src="../images/assets/logo-bcr.png" alt="" class="logo"></a> 
+      </div>
+    </div>
+  </footer>
+  
+  <!-- script -->
+  <script src="../scripts/landing.js"></script>
+  <script src="../scripts/binar.js"></script>
+  <script src="../scripts/cars.js"></script>
+  <script src="../scripts/app.js"></script>
+  <script src="../scripts/main.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script> -->
+</body>
+</html>

@@ -1,0 +1,12 @@
+{
+  "name": "bcr-part2-ch2",
+  "version": "1.1.1",
+  "description": "Challenge 2 Level Silver FSW-2",
+  "main": "server/index.js",
+  "author": "dvlboo (@dvlboo => github)",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "dev": "node server/index.js"
+  }
+}
