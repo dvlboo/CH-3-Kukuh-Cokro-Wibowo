@@ -3,7 +3,6 @@ class Car {
 
   static init(cars) {
     this.list = cars.map((i) => new this(i))
-    // console.log(list)
   }
 
   constructor({
