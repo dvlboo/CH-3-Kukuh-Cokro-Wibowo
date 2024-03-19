@@ -9,5 +9,6 @@ router.get("/:id", carsController.getCar)
 router.post("/", carsController.postCar)
 router.put("/:id", carsController.updateCar)
 router.patch("/:id", carsController.patchCar)
+router.delete("/:id", carsController.delCar)
 
 module.exports = router

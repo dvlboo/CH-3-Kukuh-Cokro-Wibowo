@@ -91,8 +91,8 @@ exports.delCar = (req, res) => {
   }
 
   const response = {
-    data,
-    message: "Car deleted successfully"
+    message: "Car deleted successfully",
+    data
   }
 
   res.status(202).json(response)
