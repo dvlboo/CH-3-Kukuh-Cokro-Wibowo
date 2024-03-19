@@ -52,13 +52,6 @@ exports.updateCar = (id, data) => {
     return { success: false, message: `Car with id ${id} is not found!` }
   }
 
-  // const requiredFields = ["plate", "transmission", "manufacture", "model", "image", "rentPerDay", "capacity", "description", "availableAt", "transmission", "available", "type", "year", "options", "specs"]
-  // for (const field of requiredFields) {
-  //   if (!data[field]) {
-  //     return { success: false, message: `Incomplete car information. Please provide all required fields.` }
-  //   }
-  // }
-
   const updatedCar = { 
     ...carsData[carIndex], 
     ...data 
@@ -68,15 +61,15 @@ exports.updateCar = (id, data) => {
   return { success: true, data: updatedCar, message: "Car data updated successfully" }
 }
 
-exports.updateCarPatch = (carId, newData) => {
-  const carIndex = carsData.findIndex(car => car.id === carId)
+exports.updateCarPatch = (id, data) => {
+  const carIndex = carsData.findIndex(car => car.id === id)
   if (carIndex === -1) {
-    return { success: false, message: `Car with id ${carId} is not found!` }
+    return { success: false, message: `Car with id ${id} is not found!` }
   }
 
   const updatedCar = { 
     ...carsData[carIndex], 
-    ...newData 
+    ...data 
   }
 
   carsData[carIndex] = updatedCar
@@ -85,7 +78,7 @@ exports.updateCarPatch = (carId, newData) => {
 }
 
 exports.delCar = (id) => {
-  const index = carsData.findIndex((cars) => cars.id)
+  const index = carsData.findIndex((cars) => cars.id == id)
   if (index === -1) {
     return null
   }

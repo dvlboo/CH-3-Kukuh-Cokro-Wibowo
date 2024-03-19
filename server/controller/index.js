@@ -34,10 +34,11 @@ exports.getCar = (req, res) => {
     : res.status(200).json(response)
 }
 
+// Post Car with Middleware
 exports.postCar = (req, res, next) => {
   const data = carsService.postCar(req.body)
 
-  // middleware valiity data
+  // middleware validity data
   const requiredFields = ["plate","manufacture", "model", "image", "rentPerDay", "capacity", "description", "availableAt", "transmission", "available", "type", "year", "options", "specs"];
   for (const field of requiredFields) {
     if (!data[field] || data[field] === "") {
@@ -58,11 +59,25 @@ exports.postCar = (req, res, next) => {
   res.status(201).json(response)
 }
 
-exports.updateCar = (req, res) => {
+// Edit Car with Middelware Using Put
+exports.putCar = (req, res, next) => {
   const { id } = req.params;
-  const newData = req.body;
+  const data = req.body;
 
-  const updateResult = carsService.updateCar(id, newData);
+  const updateResult = carsService.updateCar(id, data);
+
+  // middleware validity data
+  const requiredFields = ["plate","manufacture", "model", "image", "rentPerDay", "capacity", "description", "availableAt", "transmission", "available", "type", "year", "options", "specs"];
+  for (const field of requiredFields) {
+    if (!data[field] || data[field] === "") {
+      return res.status(400).json({
+        editData: null,
+        message: `${field} must be filled`
+      });
+    }
+  }
+
+  next();
 
   if (!updateResult.success) {
     return res.status(404).json({ data: null, message: updateResult.message });
@@ -71,11 +86,12 @@ exports.updateCar = (req, res) => {
   res.status(200).json({ data: updateResult.data, message: updateResult.message });
 };
 
+// Edit Car Using Patch
 exports.patchCar = (req, res) => {
   const { id } = req.params;
-  const newData = req.body;
+  const data = req.body;
 
-  const updateResult = carsService.updateCarPatch(id, newData);
+  const updateResult = carsService.updateCarPatch(id, data);
 
   if (!updateResult.success) {
     return res.status(404).json({ data: null, message: updateResult.message });
@@ -84,6 +100,7 @@ exports.patchCar = (req, res) => {
   res.status(200).json({ data: updateResult.data, message: updateResult.message });
 };
 
+// Delete Car by Params
 exports.delCar = (req, res) => {
   const { id } = req.params
 
