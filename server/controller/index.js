@@ -1,16 +1,24 @@
 const carsService = require("../service")
 
+// Get All Cars by Capacity, Manufacture, Year
 exports.getCars = (req, res) => {
-  const data = carsService.getCars()
+  const { capacity, manufacture, year } = req.query
+
+  const data = carsService.getCars(capacity, manufacture, year)
+
+  if (!data || data == "") {
+    res.status(404).json({message : "Car Not Found"})
+  }
 
   const response = {
     carsData : data,
-    message: null,
+    message: "Cars data successfully",
   };
 
   res.status(200).json(response);
 }
 
+// Get All Cars by Params
 exports.getCar = (req, res) => {
   const { id } = req.params
 
@@ -26,22 +34,21 @@ exports.getCar = (req, res) => {
     : res.status(200).json(response)
 }
 
-exports.postCar = (req, res) => {
+exports.postCar = (req, res, next) => {
   const data = carsService.postCar(req.body)
 
-  if (!data.plate || 
-    !data.transmission || 
-    !data.manufacture || 
-    !data.model || 
-    !data.available || 
-    !data.type || 
-    !data.year || 
-    !data.options || 
-    !data.specs) 
-      {
-    return res.status(400).json(
-      { message: "Incomplete car information. Please provide all required fields." })
+  // middleware valiity data
+  const requiredFields = ["plate","manufacture", "model", "image", "rentPerDay", "capacity", "description", "availableAt", "transmission", "available", "type", "year", "options", "specs"];
+  for (const field of requiredFields) {
+    if (!data[field] || data[field] === "") {
+      return res.status(400).json({
+        data: null,
+        message: `${field} must be filled`
+      });
+    }
   }
+
+  next();
 
   const response = {
     data,
@@ -49,7 +56,6 @@ exports.postCar = (req, res) => {
   }
   
   res.status(201).json(response)
-
 }
 
 exports.updateCar = (req, res) => {
